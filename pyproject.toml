@@ -5,7 +5,6 @@ description = "Outline-to-draft tools for blog posts in the vault: a drafting sc
 requires-python = ">=3.12"
 dependencies = [
     "typer>=0.15.0",
-    "click<8.3.2",  # 8.3.2 breaks typer 0.24.1's option parsing (same pin as process-doctor)
     "rich>=14.3.3",
     "pydantic>=2.0",
     "local-first-common",
