@@ -65,8 +65,14 @@ def list_notes(
         if str(fm.get("status", "")).lower() != status:
             continue
         series = str(fm.get("series") or "").strip("[]")
-        rows.append({"series": series, "position": fm.get("series_position"), "target": str(fm.get("target_date") or ""),
-                     "path": str(f.relative_to(vault_blog))})
+        rows.append(
+            {
+                "series": series,
+                "position": fm.get("series_position"),
+                "target": str(fm.get("target_date") or ""),
+                "path": str(f.relative_to(vault_blog)),
+            }
+        )
     rows.sort(key=lambda r: (r["series"], r["position"] if isinstance(r["position"], int) else 999))
     if as_json:
         typer.echo(json.dumps(rows, indent=2))

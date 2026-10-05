@@ -83,7 +83,12 @@ def clean(sentence: str) -> str:
 
 
 def _hint(section: Section) -> str:
-    text = re.sub(r"```.*?```", "", re.sub(r"<!--\s*(?:~\d+ words|test:[^>]*|TODO[^>]*)-->", "", section.text, flags=re.DOTALL), flags=re.DOTALL)
+    text = re.sub(
+        r"```.*?```",
+        "",
+        re.sub(r"<!--\s*(?:~\d+ words|test:[^>]*|TODO[^>]*)-->", "", section.text, flags=re.DOTALL),
+        flags=re.DOTALL,
+    )
     text = re.sub(r"<!-- outline:|-->|\|[^\n]*\||[#*_`>]", " ", text)
     return re.sub(r"\s+", " ", text).strip()[:200]
 

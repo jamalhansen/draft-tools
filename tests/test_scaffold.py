@@ -39,7 +39,12 @@ assert True
 
 
 def test_round_trip_is_exact():
-    for text in (OUTLINE, "no frontmatter\n## A\nb", "---\na: 1\n---", "---\na: 1\n---\n## X\n```\n## not a heading\n```\n"):
+    for text in (
+        OUTLINE,
+        "no frontmatter\n## A\nb",
+        "---\na: 1\n---",
+        "---\na: 1\n---\n## X\n```\n## not a heading\n```\n",
+    ):
         assert parse_note(text).render() == text
 
 

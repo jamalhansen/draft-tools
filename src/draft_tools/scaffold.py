@@ -24,7 +24,9 @@ DIRECT_ANSWER = "<!-- Direct answer (~50 words): answer the title plainly, first
 FILL_IN = re.compile(r"\[fill[^\]]*\]|\*?\(fill in[^)]*\)\*?", re.IGNORECASE)
 BULLET = re.compile(r"^\s*([-*+]|\d+[.)])\s+")
 ANNOTATION = re.compile(r"^\s*<!--\s*test:")
-SKIP_NOTE = "<!-- TODO: test:skip was added by draft-scaffold; replace it with a real annotation once this code is final -->\n"
+SKIP_NOTE = (
+    "<!-- TODO: test:skip was added by draft-scaffold; replace it with a real annotation once this code is final -->\n"
+)
 
 
 class ScaffoldError(Exception):
@@ -64,7 +66,9 @@ def scaffold_lines(lines: list[str], report: ScaffoldReport, heading: str) -> li
             continue
         if BULLET.match(line):
             block = []
-            while i < len(lines) and (BULLET.match(lines[i]) or (lines[i].startswith((" ", "\t")) and lines[i].strip())):
+            while i < len(lines) and (
+                BULLET.match(lines[i]) or (lines[i].startswith((" ", "\t")) and lines[i].strip())
+            ):
                 block.append(lines[i])
                 i += 1
             out += _comment_block(block)
