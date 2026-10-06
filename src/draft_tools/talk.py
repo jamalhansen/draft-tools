@@ -60,7 +60,7 @@ def read_transcript(path: Path) -> str:
     if path.suffix.lower() not in AUDIO_EXTENSIONS:
         return path.read_text(encoding="utf-8").strip()
     try:
-        import mlx_whisper
+        import mlx_whisper  # pyright: ignore[reportMissingImports]  # optional 'voice' extra, Apple silicon only
     except ImportError as e:
         raise RuntimeError(
             "Audio needs mlx-whisper: uv tool install --reinstall '~/projects/local-first/draft-tools[voice]'"
